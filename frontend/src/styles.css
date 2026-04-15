@@ -1,0 +1,518 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color: #18211d;
+  background: #f4f7f5;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-synthesis: none;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #a9b8b0;
+  border-radius: 8px;
+  padding: 0.72rem 0.8rem;
+  color: #18211d;
+  background: #ffffff;
+  outline: none;
+}
+
+input:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.16);
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr) minmax(220px, 280px);
+  gap: 16px;
+  min-height: 100vh;
+  padding: 20px;
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.08), transparent 38%),
+    linear-gradient(225deg, rgba(225, 29, 72, 0.08), transparent 32%),
+    #f4f7f5;
+}
+
+.login-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 20px;
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.1), transparent 42%),
+    linear-gradient(225deg, rgba(225, 29, 72, 0.1), transparent 36%),
+    #f4f7f5;
+}
+
+.login-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  width: min(100%, 900px);
+  min-height: 440px;
+  overflow: hidden;
+  border: 1px solid #d6dfda;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 48px rgba(24, 33, 29, 0.1);
+}
+
+.login-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  object-fit: cover;
+}
+
+.login-content {
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+  min-width: 0;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.login-content h1,
+.login-content p {
+  margin: 0;
+}
+
+.login-content h1 {
+  font-size: 2rem;
+  overflow-wrap: anywhere;
+}
+
+.login-form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.login-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 700;
+}
+
+.login-error {
+  margin: 0;
+}
+
+.sidebar,
+.chat-panel,
+.users-panel {
+  min-width: 0;
+  border: 1px solid #d6dfda;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 14px 40px rgba(24, 33, 29, 0.08);
+}
+
+.sidebar,
+.users-panel {
+  align-self: start;
+  overflow: hidden;
+}
+
+.room-photo {
+  display: block;
+  width: 100%;
+  height: 138px;
+  object-fit: cover;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1rem 1rem 0;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: #9ca3af;
+}
+
+.status-dot.connected {
+  background: #0f766e;
+}
+
+.join-form,
+.room-section,
+.users-panel {
+  padding: 1rem;
+}
+
+.account-panel {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem 1rem 0;
+}
+
+.account-panel span {
+  color: #5d6b64;
+  font-weight: 700;
+}
+
+.account-panel strong {
+  overflow-wrap: anywhere;
+}
+
+.join-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.join-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 700;
+}
+
+.login-form button,
+.join-form button,
+.composer button {
+  min-height: 44px;
+  padding: 0.72rem 1rem;
+  color: #ffffff;
+  background: #0f766e;
+  font-weight: 800;
+}
+
+.login-form button:hover,
+.join-form button:hover,
+.composer button:hover {
+  background: #0b5d56;
+}
+
+.secondary-button {
+  width: fit-content;
+  min-height: 34px;
+  border: 1px solid #a9b8b0;
+  padding: 0.45rem 0.7rem;
+  color: #18211d;
+  background: #ffffff;
+  font-weight: 800;
+}
+
+.secondary-button:hover {
+  border-color: #0f766e;
+  color: #0b5d56;
+}
+
+.section-title {
+  margin-bottom: 0.75rem;
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.room-list,
+.user-list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.room-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #d6dfda;
+  color: #18211d;
+  background: #ffffff;
+  text-align: left;
+}
+
+.room-button span,
+.room-button small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.room-button small {
+  flex: 0 0 auto;
+  color: #5d6b64;
+}
+
+.room-button.active {
+  border-color: #e11d48;
+  color: #ffffff;
+  background: #e11d48;
+}
+
+.room-button.active small {
+  color: #ffffff;
+}
+
+.chat-panel {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto auto;
+  min-height: calc(100vh - 40px);
+  overflow: hidden;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid #d6dfda;
+}
+
+.chat-header .secondary-button {
+  flex: 0 0 auto;
+}
+
+.chat-header h1,
+.chat-header p {
+  margin: 0;
+}
+
+.chat-header h1 {
+  font-size: 1.45rem;
+  overflow-wrap: anywhere;
+}
+
+.label {
+  color: #5d6b64;
+  font-weight: 800;
+}
+
+.error-banner {
+  margin: 1rem 1rem 0;
+  border: 1px solid rgba(225, 29, 72, 0.28);
+  border-radius: 8px;
+  padding: 0.75rem 0.85rem;
+  color: #991b1b;
+  background: #fff1f2;
+  font-weight: 700;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.72rem;
+  min-height: 0;
+  padding: 1rem;
+  overflow-y: auto;
+  background: #f8faf9;
+}
+
+.empty-message {
+  margin: 0;
+  color: #5d6b64;
+  overflow-wrap: anywhere;
+}
+
+.system-message {
+  align-self: center;
+  max-width: min(100%, 540px);
+  border-radius: 8px;
+  padding: 0.42rem 0.7rem;
+  color: #5d6b64;
+  background: #edf2ef;
+  font-weight: 700;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.message {
+  align-self: flex-start;
+  width: fit-content;
+  max-width: min(76%, 680px);
+  border: 1px solid #d6dfda;
+  border-left: 4px solid #f59e0b;
+  border-radius: 8px;
+  padding: 0.72rem 0.82rem;
+  background: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.own-message {
+  align-self: flex-end;
+  border-left-color: #0f766e;
+  background: #e8f7f3;
+}
+
+.message p {
+  margin: 0.25rem 0 0;
+  white-space: pre-wrap;
+}
+
+.message-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #5d6b64;
+  font-size: 0.9rem;
+}
+
+.typing-line {
+  min-height: 28px;
+  padding: 0.25rem 1rem;
+  color: #5d6b64;
+  font-weight: 700;
+}
+
+.composer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.65rem;
+  padding: 1rem;
+  border-top: 1px solid #d6dfda;
+  background: #ffffff;
+}
+
+.composer button {
+  min-width: 92px;
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  min-height: 42px;
+  overflow-wrap: anywhere;
+}
+
+.user-row span {
+  display: grid;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #e11d48;
+  font-weight: 900;
+}
+
+.user-row strong {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.user-row small {
+  flex: 0 0 auto;
+  color: #5d6b64;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.user-button {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.35rem;
+  color: #18211d;
+  background: #ffffff;
+  text-align: left;
+}
+
+.user-button:hover,
+.user-button.active {
+  border-color: #e11d48;
+  background: #fff1f2;
+}
+
+.unread-badge {
+  display: grid;
+  min-width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 999px;
+  padding: 0 0.35rem;
+  color: #ffffff !important;
+  background: #e11d48;
+}
+
+.panel-section + .panel-section {
+  margin-top: 1rem;
+  border-top: 1px solid #d6dfda;
+  padding-top: 1rem;
+}
+
+@media (max-width: 1040px) {
+  .app-shell {
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  }
+
+  .users-panel {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .login-page {
+    padding: 12px;
+  }
+
+  .login-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .login-photo {
+    height: 180px;
+    min-height: 180px;
+  }
+
+  .app-shell {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .chat-panel {
+    min-height: 72vh;
+  }
+
+  .chat-header,
+  .composer {
+    align-items: stretch;
+  }
+
+  .composer {
+    grid-template-columns: 1fr;
+  }
+
+  .message {
+    max-width: 100%;
+  }
+}
